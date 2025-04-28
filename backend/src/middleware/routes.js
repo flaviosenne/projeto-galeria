@@ -6,7 +6,7 @@ const route = new Router()
 
 route.post('/gallery', upload.single('file'), galleryController.create)
 route.get('/gallery', galleryController.list)
-route.get('/gallery/:title', galleryController.findByTitle)
-route.delete('/gallery', galleryController.delete)
+route.get('/gallery/:name', galleryController.findByTitle)
+route.delete('/gallery/:name', galleryController.delete)
 
 export { route }
