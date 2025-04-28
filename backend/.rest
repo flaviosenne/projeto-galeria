@@ -1,0 +1,2 @@
+# Buscar imagens 
+GET http://localhost:3000/gallery
