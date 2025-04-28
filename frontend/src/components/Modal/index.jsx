@@ -5,9 +5,10 @@ import { FaTrashAlt } from "react-icons/fa";
 import { useRef, useState } from "react";
 
 
-function Modal({ isOpen, onClose }) {
+function Modal({ isOpen, onClose, onUploadSucess }) {
     const fileInputRef = useRef(null);
     const [preview, setPreview] = useState(null);
+    const [file, setFile] = useState(null);
 
     const handleBoxClick = () => {
         fileInputRef.current.click();
@@ -18,8 +19,33 @@ function Modal({ isOpen, onClose }) {
         if (file && file.type.startsWith('image/')) {
             const imageURL = URL.createObjectURL(file);
             setPreview(imageURL);
+            setFile(file)
         } else {
             setPreview(null);
+            setFile(null)
+        }
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (!file) return;
+
+        const formData = new FormData();
+        formData.append('file', file);
+
+        try {
+            const res = await fetch('http://localhost:3000/gallery', {
+                method: 'POST',
+                body: formData,
+            });
+
+            const data = await res.json();
+            onUploadSucess(true)
+            setPreview(null)
+            setFile(null)
+            console.log('Upload feito com sucesso:', data);
+        } catch (error) {
+            console.error('Erro ao enviar o arquivo:', error);
         }
     };
 
@@ -54,7 +80,7 @@ function Modal({ isOpen, onClose }) {
 
                 <input />
 
-                <button className="h-[30px] w-full">Enviar</button>
+                <button onClick={(e) => handleSubmit(e)} className="h-[30px] w-full">Enviar</button>
             </div>
         </div>
     )
