@@ -1,12 +1,14 @@
-import { useState } from 'react'
-import './App.css'
+import Home from "./components/Home"
+import Menu from "./components/Menu"
 
 function App() {
 
   return (
-
-    <p>Teste</p>
-
+    <div class="w-full h-[100vh]">
+      <Menu/>
+      <Home/>
+    </div>
+    
   )
 }
 
