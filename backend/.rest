@@ -6,5 +6,5 @@ GET http://localhost:3000/gallery/praia
 
 
 ### Deletar imagem por nome
-DELETE http://localhost:3000/gallery/1745865678791-praia.jpg
+DELETE http://localhost:3000/gallery/1745865388348-praia.jpg
 
