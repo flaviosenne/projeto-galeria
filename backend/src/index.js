@@ -1,6 +1,6 @@
 import express from 'express'
 import { middleware } from './middleware/index.js'
-
+import './scheduller/remove-all-uploads.js'
 const PORT = process.env.PORT || 3000
 
 const app = express()

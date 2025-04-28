@@ -7,7 +7,7 @@ export default {
     },
     create(req, res) {
         console.log(req.file)
-        res.status(201).json({})
+        res.status(201).json({filename: req.file.filename})
     },
     delete(req, res) {
         res.status(204).end()
